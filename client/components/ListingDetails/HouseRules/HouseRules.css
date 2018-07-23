@@ -1,0 +1,14 @@
+.ruleItem {
+  margin: 0.5rem 0;
+}
+
+.moreWrapper {
+  height: 0;
+  opacity: 0;
+  transition: 0.5s all ease-out;
+  overflow: hidden;
+}
+
+.moreContent {
+  height: fit-content;
+}

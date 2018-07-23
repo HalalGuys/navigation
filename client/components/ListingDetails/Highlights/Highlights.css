@@ -1,0 +1,46 @@
+.highlights {
+  border: 1px lightgrey solid;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+  padding: 1rem;
+}
+
+.heading {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  color: #888888;
+}
+
+.highlight {
+  margin: 1rem 0 0;
+}
+
+.tagline {
+  font-weight: 400;
+}
+
+.feedback {
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  color: #888888;
+  height: 1rem;
+}
+
+.thumbsUp {
+  position: relative;
+  top: 0.1rem;
+  width: 0.9rem;
+  height: auto;
+}
+
+.upvote,
+.downvote {
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.upvote:hover,
+.downvote:hover {
+  color: #008489;
+}
