@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Landing from '../ListingSearch/Landing/Landing';
 import Results from '../ListingSearch/Results/Results';
 import Navbar from '../ListingSearch/Navbar/Navbar';
-
-// import { constants } from '../utils';
+import SearchResults from '../ListingSearch/SearchResults/SearchResults';
 
 import './App.css';
 
@@ -30,7 +30,6 @@ export default class extends React.Component {
 
   componentDidMount() {
     this.getSearchHistory();
-    this.getSearchResults('a');
   }
 
   getSearchHistory() {
@@ -56,9 +55,14 @@ export default class extends React.Component {
   render() {
     const { searchQuery, searchRecords, searchResults } = this.state;
     return (
+      <Router>
+        <div>
+          <Route exact path="/" render={() => <Landing {...this.state} />} />
+          <Route path="/search/:searchQuery" component={SearchResults} />
+        </div>
+      </Router>
       // <Landing searchHistory={searchHistory} getSearchResults={this.getSearchResults} />;
       // <Navbar />
-      <Results {...this.state} />
     );
   }
 }

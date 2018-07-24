@@ -1,24 +1,57 @@
+import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Results.css';
 
-const Results = (props) => {
-  const { searchQuery, searchResults } = props;
-  return (
-    <div className={styles.container}>
-      <div className={styles.summary}>
-        {`Results found for
-        "${searchQuery}":
-         ${searchResults.length}
-         ${!searchResults.length ? '🙁' : ''}`}
-      </div>
-      <div className={styles.list}>
-        {searchResults.map(searchResult => <Result searchResult={searchResult} />)}
-      </div>
-    </div>
-  );
+const apiEndpoints = {
+  getRecords: '/api/searchRecords',
+  getResults: '/api/searchListings',
+  postRecords: '/api/searchRecords',
 };
+
+export default class Results extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: [],
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.props.match);
+    const {
+      match: { params },
+    } = this.props;
+    this.getSearchResults(params.searchQuery);
+  }
+
+  getSearchResults(searchQuery) {
+    axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
+      this.setState({ searchResults: response.data });
+    });
+  }
+
+  render() {
+    const { searchResults } = this.state;
+    const {
+      match: { params },
+    } = this.props;
+    return (
+      <div className={styles.container}>
+        <div className={styles.summary}>
+          {`Results found for
+          "${params.searchQuery}":
+          ${searchResults.length}
+          ${!searchResults.length ? '🙁' : ''}`}
+        </div>
+        <div className={styles.list}>
+          {searchResults.map(searchResult => <Result searchResult={searchResult} />)}
+        </div>
+      </div>
+    );
+  }
+}
 
 const Result = (props) => {
   const {
@@ -42,18 +75,6 @@ const Result = (props) => {
   );
 };
 
-Results.propTypes = {
-  searchQuery: PropTypes.string.isRequired,
-  searchResults: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      host: PropTypes.string,
-      city: PropTypes.string,
-      photo: PropTypes.string,
-    }),
-  ).isRequired,
-};
-
 Result.propTypes = {
   searchResult: PropTypes.shape({
     title: PropTypes.string,
@@ -62,5 +83,3 @@ Result.propTypes = {
     photo: PropTypes.string,
   }).isRequired,
 };
-
-module.exports = Results;

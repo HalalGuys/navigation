@@ -12,6 +12,11 @@ hr {
   border-color: lightgrey;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 *:focus {
   outline: 0;
 }
