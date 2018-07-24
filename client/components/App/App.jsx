@@ -22,7 +22,6 @@ export default class extends React.Component {
     this.postSearchRecord = this.postSearchRecord.bind(this);
     this.getSearchHistory = this.getSearchHistory.bind(this);
     this.state = {
-      searchQuery: {},
       searchRecords: [],
       searchResults: [],
     };
@@ -53,7 +52,7 @@ export default class extends React.Component {
   }
 
   render() {
-    return <Navbar getSearchResults={this.getSearchResults} />;
+    return <Landing getSearchResults={this.getSearchResults} />;
     // <Navbar />
     // <Results />
   }

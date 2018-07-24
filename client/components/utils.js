@@ -6,12 +6,15 @@ const apiEndpoints = {
 const imagesEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
 
 const processKeyUp = (e, handler) => {
-  e.key === 'Enter' && handler();
+  if (e.key === 'Enter') {
+    handler();
+  }
 };
 
 module.exports = {
   constants: {
     apiEndpoints,
+    imagesEndpoint,
   },
   functions: {
     processKeyUp,

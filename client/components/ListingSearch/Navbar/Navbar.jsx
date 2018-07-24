@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { constants } from '../../utils';
 import Input from '../Input/Input';
 
 import styles from './Navbar.css';
+
+const profilePic = `${constants.imagesEndpoint}/host_0.jpg`;
 
 const Navbar = props => (
   <div className={styles.navbar}>
@@ -20,10 +23,7 @@ Trips
       <span>
 Messages
       </span>
-      <img
-        src="https://s3.amazonaws.com/fec-overview-service-images/confused_avatar.png"
-        alt="profile pic"
-      />
+      <img src={profilePic} alt="profile pic" />
     </div>
   </div>
 );
