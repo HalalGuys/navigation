@@ -18,7 +18,7 @@ const getSearchRecords = function (callback) {
     .exec(callback);
 };
 
-const postSearchQuery = function (searchQuery, callback) {
+const postSearchRecord = function (searchQuery, callback) {
   const searchRecord = new models.SearchRecord({ text: searchQuery, createdAt: new Date() });
   searchRecord
     .save()
@@ -29,5 +29,5 @@ const postSearchQuery = function (searchQuery, callback) {
 module.exports = {
   getSearchResults,
   getSearchRecords,
-  postSearchQuery,
+  postSearchRecord,
 };

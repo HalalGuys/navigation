@@ -27,7 +27,8 @@ app.get('/api/searchRecords', (req, res) => {
 
 app.post('/api/searchRecords', (req, res) => {
   const { searchQuery } = req.body;
-  model.postSearchQuery(searchQuery, (err, results) => {
+  model.postSearchRecord(searchQuery, (err, results) => {
+    console.log(results);
     res.statusCode = err ? 400 : 200;
     res.send(err || results);
   });

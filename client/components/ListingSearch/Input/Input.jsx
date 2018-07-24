@@ -22,7 +22,6 @@ export default class Input extends React.Component {
 
   handleKeyUp(event) {
     if (event.key === 'Enter') {
-      console.log(this.state.searchQuery);
       this.props.getSearchResults(this.state.searchQuery);
       this.clearSearchQuery();
     }
