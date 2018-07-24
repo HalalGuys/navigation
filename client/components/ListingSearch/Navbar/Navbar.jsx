@@ -20,6 +20,10 @@ Trips
       <span>
 Messages
       </span>
+      <img
+        src="https://s3.amazonaws.com/fec-overview-service-images/confused_avatar.png"
+        alt="profile pic"
+      />
     </div>
   </div>
 );

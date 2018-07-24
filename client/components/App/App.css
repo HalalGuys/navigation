@@ -16,9 +16,3 @@ hr {
 *:focus {
   outline: 0;
 }
-
-@media (max-width: 640px) {
-  body {
-    margin: 0 20px;
-  }
-}

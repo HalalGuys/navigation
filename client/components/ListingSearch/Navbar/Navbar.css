@@ -10,9 +10,24 @@
   background-color: white;
 }
 
+.menu {
+  display: flex;
+  align-items: center;
+}
+
 .menu > * {
-  margin: 1rem;
+  margin: 0 1rem;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: not-allowed;
+}
+
+.menu > img {
+  width: 2rem;
+}
+
+@media (max-width: 640px) {
+  .menu {
+    display: none;
+  }
 }
