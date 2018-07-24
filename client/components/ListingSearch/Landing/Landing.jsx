@@ -18,7 +18,7 @@ Find your Halal...
   </div>
 );
 
-Landing.propTypes = {
+Input.propTypes = {
   getSearchResults: PropTypes.func.isRequired,
 };
 

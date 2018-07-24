@@ -16,7 +16,7 @@ export default class Input extends React.Component {
   }
 
   handleChange(event) {
-    const target = event.target;
+    const { target } = event;
     this.setState({ inputField: target, searchQuery: target.value });
   }
 
@@ -41,14 +41,15 @@ export default class Input extends React.Component {
     return (
       <div>
         <div className={styles.container}>
-          <span className={styles.icon}>
-🔎
+          <span className={styles.icon} role="img" aria-label="search">
+            🔎
           </span>
           <input
             className={styles.field}
             value={searchQuery}
             onChange={this.handleChange}
             onKeyUp={this.handleKeyUp}
+            tabIndex="0"
             placeholder="Anywhere"
             autoFocus
           />
@@ -59,6 +60,13 @@ export default class Input extends React.Component {
                 this.clearSearchQuery();
               }
             }}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter' && searchQuery) {
+                this.clearSearchQuery();
+              }
+            }}
+            role="button"
+            tabIndex="0"
           >
             &times;
           </span>
@@ -67,3 +75,7 @@ export default class Input extends React.Component {
     );
   }
 }
+
+Input.propTypes = {
+  getSearchResults: PropTypes.func.isRequired,
+};

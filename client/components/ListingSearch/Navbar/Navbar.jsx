@@ -28,4 +28,8 @@ Messages
   </div>
 );
 
+Navbar.propTypes = {
+  getSearchResults: PropTypes.func.isRequired,
+};
+
 module.exports = Navbar;
