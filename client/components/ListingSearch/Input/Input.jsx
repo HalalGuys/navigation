@@ -31,6 +31,7 @@ export default class Input extends React.Component {
     if (this.state.inputField) {
       this.setState({ searchQuery: '' }, () => {
         this.state.inputField.value = '';
+        this.state.inputField.focus();
       });
     }
   }
@@ -38,13 +39,29 @@ export default class Input extends React.Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <div>
+      <div className={styles.container}>
+        <span className={styles.icon}>
+🔎
+        </span>
         <input
+          className={styles.field}
           value={searchQuery}
           onChange={this.handleChange}
           onKeyUp={this.handleKeyUp}
+          placeholder="Anywhere"
           autoFocus
         />
+
+        <span
+          className={`${styles.cancel} ${searchQuery ? styles.active : ''}`}
+          onClick={() => {
+            if (searchQuery) {
+              this.clearSearchQuery();
+            }
+          }}
+        >
+          &times;
+        </span>
       </div>
     );
   }
