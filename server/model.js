@@ -1,47 +1,33 @@
 const models = require('../data');
 
-const getListingDetails = function (id, callback) {
-  let listing = {};
-  models.Listing.findOne({ listingId: id })
-    .then((result) => {
-      listing = { ...result._doc };
-    })
-    .then(() => models.ListingType.findOne({ id: listing.typeId }))
-    .then((result) => {
-      listing.listingType = result;
-      delete listing.typeId;
-    })
-    .then(() => models.Host.findOne({ id: listing.hostId }))
-    .then((result) => {
-      listing.host = result;
-      delete listing.hostId;
-    })
-    .then(() => models.CancellationPolicy.findOne({ id: listing.cancellationPolicyId }))
-    .then((result) => {
-      listing.cancellationPolicy = result;
-      delete listing.cancellationPolicyId;
-    })
-    .then(() => models.Amenity.find({ id: { $in: listing.amenityIds } }))
+const getSearchResults = function (searchQuery, callback) {
+  models.SearchListing.find({
+    $or: [{ title: { $regex: searchQuery } }, { city: { $regex: searchQuery } }],
+  })
     .then((results) => {
-      listing.amenities = results;
-      delete listing.amenityIds;
+      callback(null, results);
     })
-    .then(() => callback(null, listing))
     .catch((err) => {
       callback(err);
     });
 };
 
-const updateHighlightFeedback = function (listingId, highlightId, feedback, callback) {
-  models.Listing.findOneAndUpdate(
-    { listingId, 'highlights.id': highlightId },
-    { $inc: { 'highlights.$.upvotes': feedback } },
-  )
-    .then(() => callback(null, 'Successfully updated'))
+const getSearchRecords = function (callback) {
+  models.SearchRecord.find({})
+    .sort('-createdAt')
+    .exec(callback);
+};
+
+const postSearchQuery = function (searchQuery, callback) {
+  const searchRecord = new models.SearchRecord({ text: searchQuery });
+  searchRecord
+    .save()
+    .then(results => callback(null, results))
     .catch(err => callback(err));
 };
 
 module.exports = {
-  getListingDetails,
-  updateHighlightFeedback,
+  getSearchResults,
+  getSearchRecords,
+  postSearchQuery,
 };

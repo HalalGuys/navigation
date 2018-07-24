@@ -8,7 +8,7 @@ const searchListing = {
 
 const searchRecord = {
   text: String,
-  time: Date,
+  createdAt: Date,
 };
 
 module.exports = {
