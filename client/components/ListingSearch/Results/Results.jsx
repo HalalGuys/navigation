@@ -16,14 +16,18 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      match: { params },
-    } = this.props;
-    this.getSearchResults(params.searchQuery);
+    this.getSearchResults(this.props);
   }
 
-  getSearchResults(searchQuery) {
-    axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
+  componentWillReceiveProps(nextProps) {
+    this.getSearchResults(nextProps);
+  }
+
+  getSearchResults(props) {
+    const {
+      match: { params },
+    } = props;
+    axios.get(`${apiEndpoints.getResults}/${params.searchQuery}`).then((response) => {
       this.setState({ searchResults: response.data });
     });
   }
