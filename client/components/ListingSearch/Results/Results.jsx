@@ -1,14 +1,11 @@
 import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { constants } from '../../utils';
 
 import styles from './Results.css';
 
-const apiEndpoints = {
-  getRecords: '/api/searchRecords',
-  getResults: '/api/searchListings',
-  postRecords: '/api/searchRecords',
-};
+const { apiEndpoints } = constants;
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -19,7 +16,6 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match);
     const {
       match: { params },
     } = this.props;
@@ -33,10 +29,10 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const { searchResults } = this.state;
     const {
       match: { params },
     } = this.props;
+    const { searchResults } = this.state;
     return (
       <div className={styles.container}>
         <div className={styles.summary}>
@@ -52,6 +48,14 @@ export default class Results extends React.Component {
     );
   }
 }
+
+Results.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      searchQuery: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 const Result = (props) => {
   const {

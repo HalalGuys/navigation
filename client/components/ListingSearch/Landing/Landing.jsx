@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { constants } from '../../utils';
 import Input from '../Input/Input';
 
@@ -11,15 +10,11 @@ const Landing = props => (
   <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div className={styles.screen}>
       <div className={styles.title}>
-Find your Halal...
+        {'Find your Halal...'}
       </div>
       <Input {...props} />
     </div>
   </div>
 );
-
-Input.propTypes = {
-  getSearchResults: PropTypes.func.isRequired,
-};
 
 module.exports = Landing;
