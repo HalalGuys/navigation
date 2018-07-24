@@ -19,7 +19,7 @@ app.get('/api/searchListings/:searchQuery', (req, res) => {
 });
 
 app.get('/api/searchRecords/', (req, res) => {
-  model.getSearchRecords(searchQuery, (err, results) => {
+  model.getSearchRecords((err, results) => {
     res.statusCode = err ? 400 : 200;
     res.send(err || results);
   });

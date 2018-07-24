@@ -19,7 +19,7 @@ const getSearchRecords = function (callback) {
 };
 
 const postSearchQuery = function (searchQuery, callback) {
-  const searchRecord = new models.SearchRecord({ text: searchQuery });
+  const searchRecord = new models.SearchRecord({ text: searchQuery, createdAt: new Date() });
   searchRecord
     .save()
     .then(results => callback(null, results))
