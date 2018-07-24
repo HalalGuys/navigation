@@ -22,6 +22,7 @@ export default class extends React.Component {
     this.postSearchRecord = this.postSearchRecord.bind(this);
     this.getSearchHistory = this.getSearchHistory.bind(this);
     this.state = {
+      searchQuery: '',
       searchRecords: [],
       searchResults: [],
     };
@@ -29,6 +30,7 @@ export default class extends React.Component {
 
   componentDidMount() {
     this.getSearchHistory();
+    this.getSearchResults('a');
   }
 
   getSearchHistory() {
@@ -39,7 +41,7 @@ export default class extends React.Component {
 
   getSearchResults(searchQuery) {
     axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
-      this.setState({ searchResults: response.data }, () => {
+      this.setState({ searchQuery, searchResults: response.data }, () => {
         this.postSearchRecord(searchQuery);
       });
     });
@@ -52,8 +54,11 @@ export default class extends React.Component {
   }
 
   render() {
-    return <Landing getSearchResults={this.getSearchResults} />;
-    // <Navbar />
-    // <Results />
+    const { searchQuery, searchRecords, searchResults } = this.state;
+    return (
+      // <Landing searchHistory={searchHistory} getSearchResults={this.getSearchResults} />;
+      // <Navbar />
+      <Results {...this.state} />
+    );
   }
 }

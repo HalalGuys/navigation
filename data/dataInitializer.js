@@ -11,7 +11,7 @@ const generateFakeSearchListing = function (id) {
     title: faker.random.words(),
     host: faker.name.findName(),
     city: faker.address.city(),
-    photo: `${imageEndpoint}/host_${id % 5}.jpg`,
+    photo: `${imageEndpoint}/home_${id % 5}.jpg`,
   };
 };
 

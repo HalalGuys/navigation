@@ -1,0 +1,47 @@
+.container {
+  max-width: 400px;
+  margin: 2em auto;
+  padding: 1rem;
+}
+
+.summary {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.list {
+  margin: 1rem 0 0;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+  border: 1px lightgrey solid;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px 0px;
+  margin: 0 1rem 1rem;
+  padding: 0.5rem;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.title:hover {
+  font-weight: 800;
+  color: steelblue;
+}
+
+.city {
+  font-weight: 400;
+}
+
+.host {
+  font-size: 0.8rem;
+}
+
+.photo {
+  height: 3rem;
+}
