@@ -1,5 +1,5 @@
 body {
-  max-width: 600px;
+  width: 100vw;
   margin: auto;
   padding: 2em 0;
   font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;

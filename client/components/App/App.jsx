@@ -10,8 +10,8 @@ import Navbar from '../ListingSearch/Navbar/Navbar';
 import './App.css';
 
 const apiEndpoints = {
-  getResults: '/api/searchListings',
   getRecords: '/api/searchRecords',
+  getResults: '/api/searchListings',
   postRecords: '/api/searchRecords',
 };
 
@@ -28,7 +28,15 @@ export default class extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getSearchHistory();
+  }
+
+  getSearchHistory() {
+    axios
+      .get(apiEndpoints.getRecords)
+      .then(response => this.setState({ searchRecords: response.data }));
+  }
 
   getSearchResults(searchQuery) {
     axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
@@ -38,19 +46,15 @@ export default class extends React.Component {
     });
   }
 
-  getSearchHistory() {
-    axios
-      .get(apiEndpoints.getRecords)
-      .then(response => this.setState({ searchRecords: response.data }));
-  }
-
   postSearchRecord(searchQuery) {
-    axios.post(apiEndpoints.postRecords, { searchQuery });
+    axios.post(apiEndpoints.postRecords, { searchQuery }).then(() => {
+      this.getSearchHistory();
+    });
   }
 
   render() {
-    return <Landing getSearchResults={this.getSearchResults} />;
-    // <Results />
+    return <Navbar getSearchResults={this.getSearchResults} />;
     // <Navbar />
+    // <Results />
   }
 }

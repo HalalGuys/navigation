@@ -10,16 +10,16 @@ app.use('/listings', express.static(`${__dirname}/../public`));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
-app.get('/api/searchListings/:searchQuery', (req, res) => {
-  const { searchQuery } = req.params;
-  model.getSearchResults(searchQuery, (err, results) => {
+app.get('/api/searchRecords', (req, res) => {
+  model.getSearchRecords((err, results) => {
     res.statusCode = err ? 400 : 200;
     res.send(err || results);
   });
 });
 
-app.get('/api/searchRecords', (req, res) => {
-  model.getSearchRecords((err, results) => {
+app.get('/api/searchListings/:searchQuery', (req, res) => {
+  const { searchQuery } = req.params;
+  model.getSearchResults(searchQuery, (err, results) => {
     res.statusCode = err ? 400 : 200;
     res.send(err || results);
   });
