@@ -11,7 +11,7 @@
 }
 
 .field {
-  width: 12rem;
+  width: 15rem;
   border: 0;
   font-size: 0.9rem;
 }
@@ -31,4 +31,10 @@
 .active {
   opacity: 1;
   cursor: pointer;
+}
+
+@media (max-width: 360px) {
+  .field {
+    width: 50%;
+  }
 }

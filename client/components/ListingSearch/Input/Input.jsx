@@ -39,29 +39,30 @@ export default class Input extends React.Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <div className={styles.container}>
-        <span className={styles.icon}>
+      <div>
+        <div className={styles.container}>
+          <span className={styles.icon}>
 🔎
-        </span>
-        <input
-          className={styles.field}
-          value={searchQuery}
-          onChange={this.handleChange}
-          onKeyUp={this.handleKeyUp}
-          placeholder="Anywhere"
-          autoFocus
-        />
-
-        <span
-          className={`${styles.cancel} ${searchQuery ? styles.active : ''}`}
-          onClick={() => {
-            if (searchQuery) {
-              this.clearSearchQuery();
-            }
-          }}
-        >
-          &times;
-        </span>
+          </span>
+          <input
+            className={styles.field}
+            value={searchQuery}
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyUp}
+            placeholder="Anywhere"
+            autoFocus
+          />
+          <span
+            className={`${styles.cancel} ${searchQuery ? styles.active : ''}`}
+            onClick={() => {
+              if (searchQuery) {
+                this.clearSearchQuery();
+              }
+            }}
+          >
+            &times;
+          </span>
+        </div>
       </div>
     );
   }
