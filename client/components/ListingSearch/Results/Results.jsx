@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { constants } from '../../utils';
+import { constants, functions } from '../../utils';
 
 import styles from './Results.css';
 
-const { apiEndpoints } = constants;
+const { getResultsEndpoint, listingUrl } = constants;
+const { processKeyUp } = functions;
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class Results extends React.Component {
     const {
       match: { params },
     } = props;
-    axios.get(`${apiEndpoints.getResults}/${params.searchQuery}`).then((response) => {
+    axios.get(`${getResultsEndpoint}/${params.searchQuery}`).then((response) => {
       this.setState({ searchResults: response.data });
     });
   }
@@ -46,7 +47,9 @@ export default class Results extends React.Component {
           ${!searchResults.length ? '🙁' : ''}`}
         </div>
         <div className={styles.list}>
-          {searchResults.map(searchResult => <Result searchResult={searchResult} />)}
+          {searchResults.map(searchResult => (
+            <Result {...this.props} searchResult={searchResult} />
+          ))}
         </div>
       </div>
     );
@@ -63,12 +66,21 @@ Results.propTypes = {
 
 const Result = (props) => {
   const {
-    title, host, city, photo,
+    listingId, title, host, city, photo,
   } = props.searchResult;
+  const goToListing = () => {
+    props.history.push(`${listingUrl}/${listingId}`);
+  };
   return (
     <div className={styles.result}>
       <div className={styles.details}>
-        <div className={styles.title}>
+        <div
+          className={styles.title}
+          onClick={goToListing}
+          onKeyUp={e => processKeyUp(e, goToListing)}
+          role="link"
+          tabIndex="0"
+        >
           {title}
         </div>
         <div className={styles.city}>
@@ -85,9 +97,13 @@ const Result = (props) => {
 
 Result.propTypes = {
   searchResult: PropTypes.shape({
+    listingId: PropTypes.number,
     title: PropTypes.string,
     host: PropTypes.string,
     city: PropTypes.string,
     photo: PropTypes.string,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
   }).isRequired,
 };

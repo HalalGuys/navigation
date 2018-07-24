@@ -5,7 +5,7 @@ import { constants } from '../../utils';
 
 import styles from './Input.css';
 
-const { apiEndpoints } = constants;
+const { postRecordsEndpoint, getRecordsEndpoint, searchUrl } = constants;
 
 export default class Input extends React.Component {
   constructor(props) {
@@ -28,13 +28,11 @@ export default class Input extends React.Component {
   }
 
   getSearchRecords() {
-    axios
-      .get(apiEndpoints.getRecords)
-      .then(response => this.setState({ searchRecords: response.data }));
+    axios.get(getRecordsEndpoint).then(response => this.setState({ searchRecords: response.data }));
   }
 
   postSearchRecord() {
-    axios.post(apiEndpoints.postRecords, { searchQuery: this.state.searchQuery }).then(() => {
+    axios.post(postRecordsEndpoint, { searchQuery: this.state.searchQuery }).then(() => {
       this.getSearchRecords();
     });
   }
@@ -46,7 +44,7 @@ export default class Input extends React.Component {
 
   handleKeyUp(event) {
     if (event.key === 'Enter') {
-      this.props.history.push(`/search/${this.state.searchQuery}`);
+      this.props.history.push(`${searchUrl}/${this.state.searchQuery}`);
     }
   }
 

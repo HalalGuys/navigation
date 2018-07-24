@@ -1,19 +1,25 @@
-const apiEndpoints = {
-  postRecords: '/api/searchRecords',
-  getRecords: '/api/searchRecords',
-  getResults: '/api/searchListings',
-};
+const postRecordsEndpoint = '/api/searchRecords';
+const getRecordsEndpoint = '/api/searchRecords';
+const getResultsEndpoint = '/api/searchListings';
+
+const searchUrl = '/search';
+const listingUrl = '/listing';
+
 const imagesEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
 
-const processKeyUp = (e, handler) => {
-  if (e.key === 'Enter') {
+const processKeyUp = (event, handler) => {
+  if (event.key === 'Enter') {
     handler();
   }
 };
 
 module.exports = {
   constants: {
-    apiEndpoints,
+    postRecordsEndpoint,
+    getRecordsEndpoint,
+    getResultsEndpoint,
+    searchUrl,
+    listingUrl,
     imagesEndpoint,
   },
   functions: {
