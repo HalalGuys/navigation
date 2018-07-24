@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { constants, functions } from '../../utils';
+import Input from '../Input/Input';
 import styles from './Landing.css';
 
-export default class Landing extends React.Component {}
+const Landing = props => (
+  <div>
+    <Input {...props} />
+  </div>
+);
+
+Landing.propTypes = {
+  getSearchResults: PropTypes.func.isRequired,
+};
+
+module.exports = Landing;

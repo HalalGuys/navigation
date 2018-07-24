@@ -5,16 +5,22 @@ import Landing from '../ListingSearch/Landing/Landing';
 import Results from '../ListingSearch/Results/Results';
 import Navbar from '../ListingSearch/Navbar/Navbar';
 
-import { constants } from '../utils';
+// import { constants } from '../utils';
 
 import './App.css';
 
-const { apiEndpoints } = constants;
+const apiEndpoints = {
+  postRecords: '/api/searchRecords',
+  getRecords: '/api/searchRecords',
+  getResults: '/api/searchListings',
+};
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.saveFeedbackData = this.saveFeedbackData.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
+    this.postSearchRecord = this.postSearchRecord.bind(this);
+    this.getSearchHistory = this.getSearchHistory.bind(this);
     this.state = {
       searchQuery: {},
       searchRecords: [],
@@ -23,6 +29,13 @@ export default class extends React.Component {
   }
 
   componentDidMount() {}
+
+  getSearchResults(searchQuery) {
+    axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
+      console.log(response);
+      this.setState({ searchResults: response.data }, () => this.postSearchRecord(searchQuery));
+    });
+  }
 
   postSearchRecord(searchQuery) {
     axios.post(apiEndpoints.postRecords, { searchQuery });
@@ -34,15 +47,9 @@ export default class extends React.Component {
       .then(response => this.setState({ searchRecords: response.data }));
   }
 
-  getSearchResults(searchQuery) {
-    axios.get(`${apiEndpoints.getResults}/${searchQuery}`).then((response) => {
-      this.setState({ searchResults: response.data });
-    });
-  }
-
   render() {
-    <Landing />
-    <Results />
-    <Navbar />
+    return <Landing getSearchResults={this.getSearchResults} />;
+    // <Results />
+    // <Navbar />
   }
 }
