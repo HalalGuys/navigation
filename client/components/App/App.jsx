@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Landing from '../ListingSearch/Landing/Landing';
 import Results from '../ListingSearch/Results/Results';
 import Navbar from '../ListingSearch/Navbar/Navbar';
+import Details from '../../../../listing-details/client/components/App/App';
 
 import styles from './App.css';
 
@@ -20,7 +21,15 @@ const App = () => (
           </div>
         )}
       />
-      <Route path="/listing/:listingId" component={Navbar} />
+      <Route
+        path="/listing/:listingId"
+        render={props => (
+          <div>
+            <Navbar {...props} />
+            <Details {...props} />
+          </div>
+        )}
+      />
     </div>
   </Router>
 );
