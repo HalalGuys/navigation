@@ -11,6 +11,18 @@
   background-color: white;
 }
 
+.search {
+  display: flex;
+}
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
 .menu {
   display: flex;
   align-items: center;
@@ -27,7 +39,6 @@
   width: 2rem;
   border-radius: 1rem;
   margin: 0 2rem 0 1rem;
-  cursor: pointer;
 }
 
 @media (max-width: 640px) {
