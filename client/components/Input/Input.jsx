@@ -40,7 +40,8 @@ export default class Input extends React.Component {
   }
 
   handleKeyUp(event) {
-    if (event.key === 'Enter') {
+    const { searchQuery } = this.state;
+    if (event.key === 'Enter' && searchQuery) {
       this.executeSearch();
     }
   }
@@ -51,7 +52,8 @@ export default class Input extends React.Component {
   }
 
   postSearchRecord() {
-    axios.post(postRecordsEndpoint, { searchQuery: this.state.searchQuery }).then(() => {
+    const { searchQuery } = this.state;
+    axios.post(postRecordsEndpoint, { searchQuery }).then(() => {
       this.getSearchRecords();
     });
   }
@@ -59,14 +61,17 @@ export default class Input extends React.Component {
   executeSearch() {
     this.postSearchRecord();
     this.clearSearchQuery();
-    this.props.history.push(`${searchUrl}/${this.state.searchQuery}`);
+    const { history } = this.props;
+    const { searchQuery } = this.state;
+    history.push(`${searchUrl}/${searchQuery}`);
   }
 
   clearSearchQuery() {
-    if (this.state.inputField) {
+    const { inputField } = this.state;
+    if (inputField) {
       this.setState({ searchQuery: '' }, () => {
-        this.state.inputField.value = '';
-        this.state.inputField.focus();
+        inputField.value = '';
+        inputField.focus();
       });
     }
   }
