@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Landing from './Landing/Landing';
 import Results from './Results/Results';
 import Navbar from './Navbar/Navbar';
-import Details from '../../../listing-details/client/components/App';
+import Details from './Listing/Details/client/components/App';
 
 import styles from './App.css';
 
