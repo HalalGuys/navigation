@@ -9,7 +9,7 @@ import styles from './App.css';
 
 const App = () => (
   <Router>
-    <div className={styles.container}>
+    <div className={styles.searchContainer}>
       <Route exact path="/" component={Landing} />
       <Route
         path="/search/:searchQuery"
