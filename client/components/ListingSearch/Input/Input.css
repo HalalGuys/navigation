@@ -21,6 +21,10 @@
   font-size: 0.9rem;
 }
 
+.field:focus {
+  outline: 0;
+}
+
 .icon,
 .cancel {
   padding: 0 0.5rem;
@@ -36,6 +40,10 @@
 .active {
   opacity: 1;
   cursor: pointer;
+}
+
+.active:focus {
+  outline-color: lightgrey;
 }
 
 @media (max-width: 360px) {
