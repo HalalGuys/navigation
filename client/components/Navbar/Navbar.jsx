@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../Input/Input';
-import { constants, functions } from '../../utils';
+import { constants, functions } from '../utils';
 
 import styles from './Navbar.css';
 

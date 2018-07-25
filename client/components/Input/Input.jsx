@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
 import History from '../History/History';
-import { constants } from '../../utils';
+import { constants } from '../utils';
 
 import styles from './Input.css';
 

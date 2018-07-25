@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Landing from '../Navigation/Landing/Landing';
-import Results from '../Navigation/Results/Results';
-import Navbar from '../Navigation/Navbar/Navbar';
-import Details from '../../../../listing-details/client/components/App/App';
+import Landing from './Landing/Landing';
+import Results from './Results/Results';
+import Navbar from './Navbar/Navbar';
+import Details from '../../../listing-details/client/components/App';
 
 import styles from './App.css';
 
