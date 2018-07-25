@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Landing from '../ListingSearch/Landing/Landing';
-import Results from '../ListingSearch/Results/Results';
-import Navbar from '../ListingSearch/Navbar/Navbar';
+import Landing from '../Navigation/Landing/Landing';
+import Results from '../Navigation/Results/Results';
+import Navbar from '../Navigation/Navbar/Navbar';
 import Details from '../../../../listing-details/client/components/App/App';
 
 import styles from './App.css';
