@@ -1,22 +1,7 @@
-body {
+.container {
   margin: 0;
-  width: 100vw;
+  width: 100%;
   font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   color: #484848;
-}
-
-hr {
-  margin: 0 0 1.5rem;
-  border-top: 0;
-  border-color: lightgrey;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-*:focus {
-  outline: 0;
 }

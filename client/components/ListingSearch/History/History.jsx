@@ -36,7 +36,7 @@ const History = (props) => {
           <div
             className={styles.record}
             onClick={() => handleClick(searchRecord.text)}
-            onKeyUp={e => handleKeyUp(e, handleClick)}
+            onKeyUp={e => handleKeyUp(e, () => handleClick(searchRecord.text))}
             role="link"
             tabIndex="0"
           >
