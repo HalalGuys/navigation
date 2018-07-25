@@ -6,7 +6,7 @@ import { constants, functions } from '../../utils';
 import styles from './Results.css';
 
 const { getResultsEndpoint, listingUrl } = constants;
-const { processKeyUp } = functions;
+const { handleKeyUp } = functions;
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -77,7 +77,7 @@ const Result = (props) => {
         <div
           className={styles.title}
           onClick={goToListing}
-          onKeyUp={e => processKeyUp(e, goToListing)}
+          onKeyUp={e => handleKeyUp(e, goToListing)}
           role="link"
           tabIndex="0"
         >

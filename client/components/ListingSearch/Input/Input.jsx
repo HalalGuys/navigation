@@ -23,7 +23,6 @@ export default class Input extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.getSearchRecords();
   }
 

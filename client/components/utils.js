@@ -7,7 +7,7 @@ const listingUrl = '/listing';
 
 const imagesEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
 
-const processKeyUp = (event, handler) => {
+const handleKeyUp = (event, handler) => {
   if (event.key === 'Enter') {
     handler();
   }
@@ -23,6 +23,6 @@ module.exports = {
     imagesEndpoint,
   },
   functions: {
-    processKeyUp,
+    handleKeyUp,
   },
 };
