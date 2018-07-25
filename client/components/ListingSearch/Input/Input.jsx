@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
+import History from '../History/History';
 import { constants } from '../../utils';
 
 import styles from './Input.css';
@@ -14,6 +15,8 @@ export default class Input extends React.Component {
     this.postSearchRecord = this.postSearchRecord.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.setSearchQuery = this.setSearchQuery.bind(this);
+    this.executeSearch = this.executeSearch.bind(this);
     this.clearSearchQuery = this.clearSearchQuery.bind(this);
     this.state = {
       searchQuery: '',
@@ -27,7 +30,24 @@ export default class Input extends React.Component {
   }
 
   getSearchRecords() {
-    axios.get(getRecordsEndpoint).then(response => this.setState({ searchRecords: response.data }));
+    axios.get(getRecordsEndpoint).then((response) => {
+      this.setState({ searchRecords: response.data });
+    });
+  }
+
+  setSearchQuery(searchQuery) {
+    this.setState({ searchQuery }, this.executeSearch);
+  }
+
+  handleKeyUp(event) {
+    if (event.key === 'Enter') {
+      this.executeSearch();
+    }
+  }
+
+  handleChange(event) {
+    const { target } = event;
+    this.setState({ inputField: target, searchQuery: target.value });
   }
 
   postSearchRecord() {
@@ -36,15 +56,10 @@ export default class Input extends React.Component {
     });
   }
 
-  handleChange(event) {
-    const { target } = event;
-    this.setState({ inputField: target, searchQuery: target.value });
-  }
-
-  handleKeyUp(event) {
-    if (event.key === 'Enter') {
-      this.props.history.push(`${searchUrl}/${this.state.searchQuery}`);
-    }
+  executeSearch() {
+    this.postSearchRecord();
+    this.clearSearchQuery();
+    this.props.history.push(`${searchUrl}/${this.state.searchQuery}`);
   }
 
   clearSearchQuery() {
@@ -59,8 +74,8 @@ export default class Input extends React.Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <div>
-        <div className={styles.container}>
+      <div className={styles.container}>
+        <div className={styles.bar}>
           <span className={styles.icon} role="img" aria-label="search">
             🔎
           </span>
@@ -92,6 +107,7 @@ export default class Input extends React.Component {
             &times;
           </span>
         </div>
+        {searchQuery && <History {...this.state} handleClick={this.setSearchQuery} />}
       </div>
     );
   }

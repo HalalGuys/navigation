@@ -1,4 +1,8 @@
-.container {
+.container > * {
+  margin: 0 2rem;
+}
+
+.bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,9 +11,8 @@
   border: 1px solid lightgrey;
   border-radius: 0.2rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px 0px;
-  background-color: white;
-  margin: 0 2rem;
   font-size: 0.8rem;
+  background-color: white;
 }
 
 .field {

@@ -14,6 +14,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-plusplus': 'off',
     'func-names': 'off',
+    'jsx-a11y/no-autofocus': 'off',
     'react/destructuring-assignment': 'never',
     'react/jsx-filename-extension': 'never',
   },
