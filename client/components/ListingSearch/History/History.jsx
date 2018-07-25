@@ -28,24 +28,32 @@ const getMatchingRecords = (searchRecords, searchQuery) => {
 const History = (props) => {
   const { searchRecords, searchQuery, handleClick } = props;
   const relevantSearchRecords = getMatchingRecords(searchRecords, searchQuery);
+  let recordsView = <div />;
+  if (relevantSearchRecords.length) {
+    recordsView = (
+      <div className={styles.records}>
+        {relevantSearchRecords.map(searchRecord => (
+          <div
+            className={styles.record}
+            onClick={() => handleClick(searchRecord.text)}
+            onKeyUp={e => handleKeyUp(e, handleClick)}
+            role="link"
+            tabIndex="0"
+          >
+            <span className={styles.query}>
+              {searchRecord.text}
+            </span>
+            <span className={styles.time}>
+              {searchRecord.createdAt.split('T')[0]}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
-    <div className={styles.records}>
-      {relevantSearchRecords.map(searchRecord => (
-        <div
-          className={styles.record}
-          onClick={() => handleClick(searchRecord.text)}
-          onKeyUp={e => handleKeyUp(e, handleClick)}
-          role="link"
-          tabIndex="0"
-        >
-          <span className={styles.query}>
-            {searchRecord.text}
-          </span>
-          <span className={styles.time}>
-            {searchRecord.createdAt.split('T')[0]}
-          </span>
-        </div>
-      ))}
+    <div>
+      {recordsView}
     </div>
   );
 };
