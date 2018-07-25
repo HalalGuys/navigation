@@ -1,6 +1,6 @@
-const postRecordsEndpoint = '/api/searchRecords';
-const getRecordsEndpoint = '/api/searchRecords';
-const getResultsEndpoint = '/api/searchListings';
+const postRecordsEndpoint = 'http://localhost:3001/api/searchRecords';
+const getRecordsEndpoint = 'http://localhost:3001/api/searchRecords';
+const getResultsEndpoint = 'http://localhost:3001/api/searchListings';
 
 const searchUrl = '/search';
 const listingUrl = '/listing';
