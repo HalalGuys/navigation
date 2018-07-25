@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'no-underscore-dangle': 'off',
     'no-plusplus': 'off',
+    'no-undef': 'off',
     'func-names': 'off',
     'jsx-a11y/no-autofocus': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
