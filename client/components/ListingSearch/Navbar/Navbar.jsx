@@ -7,7 +7,8 @@ import { constants, functions } from '../../utils';
 import styles from './Navbar.css';
 
 const { handleKeyUp } = functions;
-const profilePic = `${constants.imagesEndpoint}/host_7.jpg`;
+const logo = `${constants.imagesEndpoint}/logo.png`;
+const profilePic = `${constants.imagesEndpoint}/host_1.jpg`;
 
 const Navbar = (props) => {
   const goHome = () => {
@@ -15,7 +16,16 @@ const Navbar = (props) => {
   };
   return (
     <div className={styles.navbar}>
-      <Input {...props} />
+      <div className={styles.search}>
+        <img
+          className={styles.logo}
+          src={logo}
+          alt="logo"
+          onClick={goHome}
+          onKeyUp={e => handleKeyUp(e, goHome)}
+        />
+        <Input {...props} />
+      </div>
       <div className={styles.menu}>
         <span>
 Become a host
@@ -29,14 +39,7 @@ Trips
         <span>
 Messages
         </span>
-        <img
-          src={profilePic}
-          alt="profile pic"
-          onClick={goHome}
-          onKeyUp={e => handleKeyUp(e, goHome)}
-          role="link"
-          tabIndex="0"
-        />
+        <img src={profilePic} alt="profile pic" />
       </div>
     </div>
   );

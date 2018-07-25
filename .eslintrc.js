@@ -15,6 +15,7 @@ module.exports = {
     'no-plusplus': 'off',
     'func-names': 'off',
     'jsx-a11y/no-autofocus': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'react/jsx-filename-extension': 'never',
   },
 };
