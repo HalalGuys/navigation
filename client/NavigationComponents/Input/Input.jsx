@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import FaSearch from 'react-icons/lib/fa/search';
 import PropTypes from 'prop-types';
 import History from '../History/History';
 import { constants } from '../utils';
@@ -53,9 +54,7 @@ export default class Input extends React.Component {
 
   postSearchRecord() {
     const { searchQuery } = this.state;
-    axios.post(postRecordsEndpoint, { searchQuery }).then(() => {
-      this.getSearchRecords();
-    });
+    axios.post(postRecordsEndpoint, { searchQuery });
   }
 
   executeSearch() {
@@ -81,9 +80,7 @@ export default class Input extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.bar}>
-          <span className={styles.icon} role="img" aria-label="search">
-            🔎
-          </span>
+          <FaSearch className={styles.icon} />
           <input
             className={styles.field}
             value={searchQuery}
