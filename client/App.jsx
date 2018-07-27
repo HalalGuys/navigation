@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Landing from './NavigationComponents/Landing/Landing';
-import Results from './NavigationComponents/Results/Results';
-import Navbar from './NavigationComponents/Navbar/Navbar';
-import Details from './ListingComponents/Details/client/components/App';
+import Landing from './Components/Landing/Landing';
+import Results from './Components/Results/Results';
+import Navbar from './Components/Navbar/Navbar';
 
 import styles from './App.css';
 
@@ -26,7 +25,6 @@ const App = () => (
         render={props => (
           <div>
             <Navbar {...props} />
-            <Details {...props} />
           </div>
         )}
       />
