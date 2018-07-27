@@ -10,18 +10,19 @@
 
 <body>
   <div id="Navigation"></div>
-  <!-- <script src="/lib/react.development.js"></script>
-  <script src="/lib/react-dom.development.js"></script>
-  <script src="/lib/react-router-dom.development.js"></script> -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- <script crossorigin src="https://unpkg.com/react-router-dom@16/umd/react-router-dom.development.js"></script> -->
   <script src="dist/bundle.js"></script>
-  <!-- <script>
-    const routes = (
-      React.createElement(Route, { path: "/", component: Landing },
+  <script>
+    const element = React.createElement(Navigation);
+    ReactDOM.render(element, document.getElementById('Navigation'));
+    // React.createElement(Navigation)Router.BrowserRouter, { path: "/", component: Landing },
         //   React.createElement(Route, { path: "/search/:searchQuery", render: Index }),
         //   React.createElement(Route, { name: "contact", path: "contact/:id", handler: Contact })
         // )
-      );
-  </script> -->
+      // );
+  </script>
 </body>
 
 </html>
