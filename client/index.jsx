@@ -1,14 +1,11 @@
-// import Landing from './NavigationComponents/Landing/Landing';
-// import Results from './NavigationComponents/Results/Results';
-// import Navbar from './NavigationComponents/Navbar/Navbar';
+import Landing from './Components/Landing/Landing';
+import Results from './Components/Results/Results';
+import Navbar from './Components/Navbar/Navbar';
 
-// window.Landing = Landing;
-// window.Results = Results;
-// window.Navbar = Navbar;
+window.Landing = Landing;
+window.Results = Results;
+window.Navbar = Navbar;
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './App';
 
-// ReactDOM.render(<App />, document.getElementById('Navigation'));
-window.Navigation = App;
+// window.Navigation = App;
