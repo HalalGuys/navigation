@@ -3,20 +3,21 @@ const parser = require('body-parser');
 
 const model = require('./model');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 2999;
 
 const app = express();
 
 app.use('/', express.static(`${__dirname}/../public`));
 app.use('/search/:searchQuery', express.static(`${__dirname}/../public`));
 app.use('/listing/:listingId', express.static(`${__dirname}/../public`));
+
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
-  res.header('Access-Control-Allow-Methods', 'PU, POST, GET');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET');
   next();
 });
 

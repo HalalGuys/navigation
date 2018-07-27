@@ -1,5 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import Landing from './Components/Landing/Landing';
+import Results from './Components/Results/Results';
+import Navbar from './Components/Navbar/Navbar';
 
-ReactDOM.render(<App />, window.document.getElementById('Navigation'));
+window.Landing = Landing;
+window.Results = Results;
+window.Navbar = Navbar;
+
+// import App from './App';
+
+// window.Navigation = App;
