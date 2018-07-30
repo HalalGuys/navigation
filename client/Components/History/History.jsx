@@ -32,8 +32,9 @@ const History = (props) => {
   if (relevantSearchRecords.length) {
     recordsView = (
       <div className={styles.records}>
-        {relevantSearchRecords.map(searchRecord => (
+        {relevantSearchRecords.map((searchRecord, index) => (
           <div
+            key={`record_${index}`}
             className={styles.record}
             onClick={() => handleClick(searchRecord.text)}
             onKeyUp={e => handleKeyUp(e, () => handleClick(searchRecord.text))}

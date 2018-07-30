@@ -47,8 +47,8 @@ export default class Results extends React.Component {
           ${!searchResults.length ? '🙁' : ''}`}
         </div>
         <div className={styles.list}>
-          {searchResults.map(searchResult => (
-            <Result {...this.props} searchResult={searchResult} />
+          {searchResults.map((searchResult, index) => (
+            <Result key={`result_${index}`} {...this.props} searchResult={searchResult} />
           ))}
         </div>
       </div>
@@ -66,8 +66,10 @@ Results.propTypes = {
 
 const Result = (props) => {
   const {
-    listingId, title, host, city, photo,
-  } = props.searchResult;
+    searchResult: {
+      listingId, title, host, city, photo,
+    },
+  } = props;
   const goToListing = () => {
     props.history.push(`${listingUrl}/${listingId}`);
   };
