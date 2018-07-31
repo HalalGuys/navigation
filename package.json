@@ -25,9 +25,10 @@
     "seed": "node ./data/dataInitializer.js",
     "lint": "eslint ./",
     "build-dev": "webpack --watch --mode development",
-    "start-dev": "nodemon server/index.js",
     "build": "webpack --mode production",
-    "serve": "grunt s3"
+    "serve": "grunt s3",
+    "start-dev": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
