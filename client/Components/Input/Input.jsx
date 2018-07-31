@@ -3,7 +3,7 @@ import React from 'react';
 import FaSearch from 'react-icons/lib/fa/search';
 import PropTypes from 'prop-types';
 import History from '../History/History';
-import { constants } from '../utils';
+import { constants } from '../../utils';
 
 import styles from './Input.css';
 
