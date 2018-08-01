@@ -24,8 +24,7 @@
     "seed": "node ./data/dataInitializer.js",
     "lint": "eslint ./",
     "build-dev": "webpack --watch --mode development",
-    "build": "webpack --mode production && grunt s3",
-    "push": "docker build . -t bcronin2/fec-airbnh-navigation:app && docker push bcronin2/fec-airbnh-navigation:app",
+    "push": "webpack --mode production && grunt s3 && docker build . -t bcronin2/fec-airbnh-navigation:app && docker push bcronin2/fec-airbnh-navigation:app",
     "start-dev": "nodemon server/index.js",
     "start": "node server/index.js"
   },
