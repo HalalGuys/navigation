@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package.json /app/
 RUN npm install --only=production
 COPY . /app
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE 2999
+ENV DB database
+ENV PORT 2999
 CMD ["npm", "start"]
