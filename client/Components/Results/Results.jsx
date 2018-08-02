@@ -34,12 +34,11 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const {
-      match: { params },
-    } = this.props;
+    const { match, history } = this.props;
+    const { params } = match;
     const { searchResults } = this.state;
     return (
-      <div className={styles.container}>
+      <div id="Results" className={styles.container}>
         <div className={styles.summary}>
           {`Results found for
           "${params.searchQuery}":
@@ -48,7 +47,7 @@ export default class Results extends React.Component {
         </div>
         <div className={styles.list}>
           {searchResults.map((searchResult, index) => (
-            <Result key={`result_${index}`} {...this.props} searchResult={searchResult} />
+            <Result key={`result_${index}`} history={history} searchResult={searchResult} />
           ))}
         </div>
       </div>
@@ -62,16 +61,18 @@ Results.propTypes = {
       searchQuery: PropTypes.string,
     }),
   }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const Result = (props) => {
+  const { history, searchResult } = props;
   const {
-    searchResult: {
-      listingId, title, host, city, photo,
-    },
-  } = props;
+    listingId, title, host, city, photo,
+  } = searchResult;
   const goToListing = () => {
-    props.history.push(`${listingUrl}/${listingId}`);
+    history.push(`${listingUrl}/${listingId}`);
   };
   return (
     <div className={styles.result}>

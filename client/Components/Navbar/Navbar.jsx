@@ -11,11 +11,12 @@ const logo = `${constants.imagesEndpoint}/logo.png`;
 const profilePic = `${constants.imagesEndpoint}/host_1.jpg`;
 
 const Navbar = (props) => {
+  const { history } = props;
   const goHome = () => {
-    props.history.push('/');
+    history.push('/');
   };
   return (
-    <div className={styles.navbar}>
+    <div id="Navbar" className={styles.navbar}>
       <div className={styles.search}>
         <img
           className={styles.logo}
@@ -24,7 +25,7 @@ const Navbar = (props) => {
           onClick={goHome}
           onKeyUp={e => handleKeyUp(e, goHome)}
         />
-        <Input {...props} />
+        <Input history={history} />
       </div>
       <div className={styles.menu}>
         <span>
