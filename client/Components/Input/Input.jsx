@@ -76,7 +76,7 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const { searchQuery } = this.state;
+    const { searchQuery, searchRecords } = this.state;
     return (
       <div className={styles.container}>
         <div className={styles.bar}>
@@ -109,7 +109,13 @@ export default class Input extends React.Component {
             &times;
           </span>
         </div>
-        {searchQuery && <History {...this.state} handleClick={this.setSearchQuery} />}
+        {searchQuery && (
+          <History
+            searchQuery={searchQuery}
+            searchRecords={searchRecords}
+            handleClick={this.setSearchQuery}
+          />
+        )}
       </div>
     );
   }
