@@ -14,7 +14,12 @@ const Landing = (props) => {
     <div
       id="Landing"
       className={styles.container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundPosition: 'center',
+        backgroundRepeat: 'none',
+        backgroundSize: 'cover',
+      }}
     >
       <div className={styles.screen}>
         <div className={styles.title}>
