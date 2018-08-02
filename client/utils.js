@@ -1,10 +1,6 @@
-const apiDomain = window.location.href.includes('localhost')
-  ? 'http://localhost:2999'
-  : 'http://ec2-34-217-69-244.us-west-2.compute.amazonaws.com:2999';
-
-const postRecordsEndpoint = `${apiDomain}/api/searchRecords`;
-const getRecordsEndpoint = `${apiDomain}/api/searchRecords`;
-const getResultsEndpoint = `${apiDomain}/api/searchListings`;
+const postRecordsEndpoint = '/api/searchRecords';
+const getRecordsEndpoint = '/api/searchRecords';
+const getResultsEndpoint = '/api/searchListings';
 
 const searchUrl = '/search';
 const listingUrl = '/listing';
