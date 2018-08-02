@@ -25,7 +25,7 @@
     "lint": "eslint ./",
     "build-dev": "webpack --watch --mode development",
     "build-client": "webpack --mode production && grunt s3",
-    "build-server": "docker build . -t bcronin2/fec-airbnh-navigation:app && docker push bcronin2/fec-airbnh-navigation:app",
+    "build-server": "docker build . -t bcronin2/fec-airbnh-navigation && docker push bcronin2/fec-airbnh-navigation",
     "start-dev": "nodemon server/index.js",
     "start": "node server/index.js"
   },
