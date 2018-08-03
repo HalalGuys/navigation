@@ -1,30 +1,32 @@
 .container {
-  max-width: 400px;
+  width: 80%;
   margin: 1em auto;
   padding: 1rem;
 }
 
 .summary {
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .list {
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
   margin: 1rem 0 0;
+  grid-column-gap: 1%;
 }
 
 .result {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  border: 1px lightgrey solid;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px 0px;
-  margin: 0 1rem 1rem;
-  padding: 0.5rem;
+  width: 100%;
+  height: fit-content;
+  margin: 0 0 1rem;
 }
 
 .title {
   margin: 0 0 0.5rem;
-  font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
 }
@@ -34,14 +36,43 @@
   color: steelblue;
 }
 
+.photo:focus,
+.title:focus {
+  outline: 0;
+}
+
 .city {
+  font-size: 0.9rem;
   font-weight: 400;
 }
 
 .host {
+  margin: 0.2rem 0 0;
   font-size: 0.8rem;
 }
 
 .photo {
-  height: 3rem;
+  width: 100%;
+  max-width: 360px;
+  max-height: 180px;
+  margin: 0 0 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1123px) {
+  .list {
+    grid-template-columns: 31% 31% 31%;
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    grid-template-columns: 48% 48%;
+  }
+}
+
+@media (max-width: 360px) {
+  .list {
+    grid-template-columns: 100%;
+  }
 }

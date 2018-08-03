@@ -40,10 +40,10 @@ export default class Results extends React.Component {
     return (
       <div id="Results" className={styles.container}>
         <div className={styles.summary}>
-          {`Results found for
-          "${params.searchQuery}":
-          ${searchResults.length}
-          ${!searchResults.length ? '🙁' : ''}`}
+          {searchResults.length
+            ? `Showing results for
+          "${params.searchQuery}"`
+            : `No results for "${params.searchQuery}" 🙁`}
         </div>
         <div className={styles.list}>
           {searchResults.map((searchResult, index) => (
@@ -76,6 +76,15 @@ const Result = (props) => {
   };
   return (
     <div className={styles.result}>
+      <img
+        className={styles.photo}
+        onClick={goToListing}
+        onKeyUp={e => handleKeyUp(e, goToListing)}
+        role="link"
+        tabIndex="0"
+        src={photo}
+        alt={title}
+      />
       <div className={styles.details}>
         <div
           className={styles.title}
@@ -93,7 +102,6 @@ const Result = (props) => {
           {`Hosted by ${host}`}
         </div>
       </div>
-      <img className={styles.photo} src={photo} alt={title} />
     </div>
   );
 };
