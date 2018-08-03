@@ -6,21 +6,10 @@ import Input from '../Input/Input';
 
 import styles from './Landing.css';
 
-const backgroundImage = `${constants.imagesEndpoint}/landing.jpg`;
-
 const Landing = (props) => {
   const { history } = props;
   return (
-    <div
-      id="Landing"
-      className={styles.container}
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'none',
-        backgroundSize: 'cover',
-      }}
-    >
+    <div id="Landing" className={styles.container}>
       <div className={styles.screen}>
         <div className={styles.title}>
           {'Find your Halal...'}
