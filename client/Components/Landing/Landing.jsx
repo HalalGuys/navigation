@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { constants } from '../../utils';
 import Input from '../Input/Input';
 
 import styles from './Landing.css';
