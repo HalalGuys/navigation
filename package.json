@@ -26,7 +26,7 @@
     "build:local": "webpack --watch --mode development",
     "build:S3": "webpack --mode production && grunt s3",
     "build:D": "docker build . -t bcronin2/fec-airbnh-navigation && docker push bcronin2/fec-airbnh-navigation",
-    "build": "npm run build:bundle && npm run build:docker",
+    "build": "npm run build:S3 && npm run build:D",
     "start": "nodemon server/index.js"
   },
   "dependencies": {
