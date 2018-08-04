@@ -1,7 +1,6 @@
 __test__/
 client/
 node_modules/
-public/dist/
 .aws.json
 .babelrc
 .gitignore
