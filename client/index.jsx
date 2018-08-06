@@ -10,7 +10,7 @@ window.Landing = Landing;
 window.Results = Results;
 window.Navbar = Navbar;
 
-const container = document.getElementById('Navigation');
+const container = document.getElementById('navigation');
 
 const Navigation = () => (
   <BrowserRouter>
