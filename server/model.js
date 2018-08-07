@@ -27,7 +27,7 @@ const postSearchRecord = function (searchQuery, callback) {
 };
 
 const updateSearchListing = (id, cb) => {
-  Todo.findByIdAndUpdate(id, req.body,
+  models.SearchListing.findByIdAndUpdate(id, req.body,
     // an option that asks mongoose to return the updated version 
     // of the document instead of the pre-updated one.
     {new: true},
@@ -36,6 +36,18 @@ const updateSearchListing = (id, cb) => {
         return cb(null, result);
     }
   )
+}
+
+const deleteSearchListing = (id, cb) => {
+  models.SearchListing.findByIdAndRemove(id, (err, results) => {  
+    if (err) console.log(err);
+
+    const response = {
+        message: "Successfully deleted",
+        id: id
+    };
+    return cb(null, response)
+});
 }
 // const searchListing = {
 //   listingId: { type: Number, unique: true },
@@ -50,4 +62,5 @@ module.exports = {
   getSearchRecords,
   postSearchRecord,
   updateSearchListing,
+  deleteSearchListing,
 };

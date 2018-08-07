@@ -46,7 +46,12 @@ app.put('/api/searchListings/:listingId', (req, res) => {
   });
 });
 
-
+app.delete('/api/searchListings/:listingId', (req, res) => {
+  model.deleteSearchListing(req.params.listingId, (err, results) => {
+    if (err) console.log(err);
+    res.send(results);
+  });
+});
 
 app.use('/*', express.static(`${__dirname}/../public`));
 
