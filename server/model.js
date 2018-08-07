@@ -26,16 +26,11 @@ const postSearchRecord = function (searchQuery, callback) {
     .catch(err => callback(err));
 };
 
-const updateSearchListing = (id, cb) => {
-  models.SearchListing.findByIdAndUpdate(id, req.body,
-    // an option that asks mongoose to return the updated version 
-    // of the document instead of the pre-updated one.
-    {new: true},
-    (err, result) => {
-        if (err) console.log(err);
-        return cb(null, result);
-    }
-  )
+const updateSearchListing = (id, data, cb) => {
+  models.SearchListing.findByIdAndUpdate(id, data, {new: true}, (err, result) => {
+    if (err) console.log(err);
+    return cb(null, result);
+  })
 }
 
 const deleteSearchListing = (id, cb) => {
@@ -47,15 +42,9 @@ const deleteSearchListing = (id, cb) => {
         id: id
     };
     return cb(null, response)
-});
+  });
 }
-// const searchListing = {
-//   listingId: { type: Number, unique: true },
-//   title: String,
-//   host: String,
-//   city: String,
-//   photo: String,
-// };
+
 
 module.exports = {
   getSearchResults,

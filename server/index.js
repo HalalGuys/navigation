@@ -40,7 +40,7 @@ app.post('/api/searchRecords', (req, res) => {
 });
 
 app.put('/api/searchListings/:listingId', (req, res) => {
-  model.updateSearchListing(req.params.listingId, (err, results) => {
+  model.updateSearchListing(req.params.listingId, req.body, (err, results) => {
     if (err) console.log(err);
     res.send(results);
   });
