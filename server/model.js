@@ -26,8 +26,30 @@ const postSearchRecord = function (searchQuery, callback) {
     .catch(err => callback(err));
 };
 
+const updateSearchListing = (id, data, cb) => {
+  models.SearchListing.findByIdAndUpdate(id, data, {new: true}, (err, result) => {
+    if (err) console.log(err);
+    return cb(null, result);
+  })
+}
+
+const deleteSearchListing = (id, cb) => {
+  models.SearchListing.findByIdAndRemove(id, (err, results) => {  
+    if (err) console.log(err);
+
+    const response = {
+        message: "Successfully deleted",
+        id: id
+    };
+    return cb(null, response)
+  });
+}
+
+
 module.exports = {
   getSearchResults,
   getSearchRecords,
   postSearchRecord,
+  updateSearchListing,
+  deleteSearchListing,
 };
