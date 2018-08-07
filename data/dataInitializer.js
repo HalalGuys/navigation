@@ -6,8 +6,8 @@ const format = require('pg-format');
 
 
 const config = {
-  user: Process.env.DB_USER, // name of the user account
-  database: Process.env.DB_DATABASE, // name of the database
+  user: process.env.DB_USER, // name of the user account
+  database: process.env.DB_DATABASE, // name of the database
 }
 
 const pool = new pg.Pool(config);
@@ -37,69 +37,46 @@ const updateData = (id, cb) => {
   })
 }
 
-// CREATE TABLE searchListing (
-//   listingId SERIAL PRIMARY KEY,
-//   title VARCHAR(50) NOT NULL,
-//   host VARCHAR(50) NOT NULL,
-//   city VARCHAR(50) NOT NULL,
-//   photoURL VARCHAR(200) NOT NULL
-// );
 
-// CREATE TABLE searchRecord (
-//   id SERIAL PRIMARY KEY,
-//   recordText VARCHAR(30) NOT NULL,
-//   createdAt DATE NOT NULL
-// );
-// pool.connect(function (err, client, done) {
-//   myClient = client
-//   var ageQuery = format('SELECT * from numbers;')
-//   myClient.query(ageQuery, function (err, result) {
-//     if (err) {
-//       console.log(err)
-//     }
-//     console.log(result)
-//   })
-// })
+// const listingCount = 101;
 
-const listingCount = 101;
+// const generateFakeSearchListing = function (id) {
+//   return {
+//     listingId: id,
+//     title: faker.random.words(),
+//     host: faker.name.findName(),
+//     city: faker.address.city(),
+//     photo: `${imageEndpoint}/home_${id % 5}.jpg`,
+//   };
+// };
 
-const generateFakeSearchListing = function (id) {
-  return {
-    listingId: id,
-    title: faker.random.words(),
-    host: faker.name.findName(),
-    city: faker.address.city(),
-    photo: `${imageEndpoint}/home_${id % 5}.jpg`,
-  };
-};
+// const generateData = function () {
+//   const searchListings = [];
+//   for (let i = 0; i < listingCount; i++) {
+//     searchListings.push(generateFakeSearchListing(i));
+//   }
+//   return {
+//     SearchListing: searchListings,
+//   };
+// };
 
-const generateData = function () {
-  const searchListings = [];
-  for (let i = 0; i < listingCount; i++) {
-    searchListings.push(generateFakeSearchListing(i));
-  }
-  return {
-    SearchListing: searchListings,
-  };
-};
-
-const initializeData = function () {
-  const data = generateData();
-  const processes = [];
-  Object.keys(db).forEach((model) => {
-    processes.push(
-      db[model]
-        .find({})
-        .remove()
-        .exec()
-        .then(() => db[model].insertMany(data[model]))
-        .catch((err) => {
-          console.log(`Error initializing data for ${model}, ${err}`);
-          process.exit(-1);
-        })
-    );
-  });
-  Promise.all(processes).then(() => process.exit(0));
-};
+// const initializeData = function () {
+//   const data = generateData();
+//   const processes = [];
+//   Object.keys(db).forEach((model) => {
+//     processes.push(
+//       db[model]
+//         .find({})
+//         .remove()
+//         .exec()
+//         .then(() => db[model].insertMany(data[model]))
+//         .catch((err) => {
+//           console.log(`Error initializing data for ${model}, ${err}`);
+//           process.exit(-1);
+//         })
+//     );
+//   });
+//   Promise.all(processes).then(() => process.exit(0));
+// };
 
 // initializeData();
