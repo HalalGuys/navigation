@@ -1,7 +1,65 @@
+require('dotenv').config()
 const faker = require('faker');
 const db = require('./index.js');
+const pg = require('pg');
+const format = require('pg-format');
+
+
+const config = {
+  user: Process.env.DB_USER, // name of the user account
+  database: Process.env.DB_DATABASE, // name of the database
+}
+
+const pool = new pg.Pool(config);
+let myClient;
 
 const imageEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
+
+const insertData = () => {
+  for (let i = 0; i < 5000; i++) {
+    pool.connect((err, client) => {
+      myClient = client;
+      const insertQuery = format(`INSERT INTO searchListing (title, host, city, photoURL) 
+      VALUES ('${faker.random.words()}', '${faker.name.findName()}', '${faker.address.city()}', '${imageEndpoint}/home_${i % 5}.jpg');`)
+      myClient.query(insertQuery, (err, result) => {
+        if (err) console.log(err);
+        console.log(result)
+      })
+    })
+  }
+}
+insertData();
+
+const updateData = (id, cb) => {
+  pool.connect((err, client) => {
+    myClient = client;
+
+  })
+}
+
+// CREATE TABLE searchListing (
+//   listingId SERIAL PRIMARY KEY,
+//   title VARCHAR(50) NOT NULL,
+//   host VARCHAR(50) NOT NULL,
+//   city VARCHAR(50) NOT NULL,
+//   photoURL VARCHAR(200) NOT NULL
+// );
+
+// CREATE TABLE searchRecord (
+//   id SERIAL PRIMARY KEY,
+//   recordText VARCHAR(30) NOT NULL,
+//   createdAt DATE NOT NULL
+// );
+// pool.connect(function (err, client, done) {
+//   myClient = client
+//   var ageQuery = format('SELECT * from numbers;')
+//   myClient.query(ageQuery, function (err, result) {
+//     if (err) {
+//       console.log(err)
+//     }
+//     console.log(result)
+//   })
+// })
 
 const listingCount = 101;
 
@@ -44,4 +102,4 @@ const initializeData = function () {
   Promise.all(processes).then(() => process.exit(0));
 };
 
-initializeData();
+// initializeData();
