@@ -19,13 +19,13 @@ const insertData = () => {
   const startDate = new Date().getSeconds();
     pool.connect((err, client) => {
       myClient = client;
+      for (let i = 0; i < 10000000; i++) {
       const insertQuery = format(`INSERT INTO searchListing (title, host, city, photoURL) 
-      VALUES ('${faker.random.words()}', '${faker.name.findName()}', '${faker.address.city()}', '${imageEndpoint}/home_${5}.jpg');`)
-      for (let i = 0; i < 10000; i++) {
+      VALUES ('${faker.random.words()}', '${faker.name.findName()}${i}', '${faker.address.city()}', '${imageEndpoint}/home_${5}.jpg');`)
         myClient.query(insertQuery, (err, result) => {
           if (err) console.log(insertQuery, err);
           console.log(i);
-          if (i === 9999) console.log('difference', (new Date()).getMinutes() - startDate)
+          if (i === 9999999) console.log('difference', (new Date()).getMinutes() - startDate)
         })
       }
     })
