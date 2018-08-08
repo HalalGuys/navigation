@@ -6,8 +6,8 @@ const format = require('pg-format');
 
 
 const config = {
-  user: process.env.DB_USER, // name of the user account
-  database: process.env.DB_DATABASE, // name of the database
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
 }
 
 const pool = new pg.Pool(config);
@@ -16,26 +16,21 @@ let myClient;
 const imageEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
 
 const insertData = () => {
-  for (let i = 0; i < 5000; i++) {
+  const startDate = new Date().getSeconds();
     pool.connect((err, client) => {
       myClient = client;
       const insertQuery = format(`INSERT INTO searchListing (title, host, city, photoURL) 
-      VALUES ('${faker.random.words()}', '${faker.name.findName()}', '${faker.address.city()}', '${imageEndpoint}/home_${i % 5}.jpg');`)
-      myClient.query(insertQuery, (err, result) => {
-        if (err) console.log(err);
-        console.log(result)
-      })
+      VALUES ('${faker.random.words()}', '${faker.name.findName()}', '${faker.address.city()}', '${imageEndpoint}/home_${5}.jpg');`)
+      for (let i = 0; i < 10000; i++) {
+        myClient.query(insertQuery, (err, result) => {
+          if (err) console.log(insertQuery, err);
+          console.log(i);
+          if (i === 9999) console.log('difference', (new Date()).getMinutes() - startDate)
+        })
+      }
     })
-  }
 }
 insertData();
-
-const updateData = (id, cb) => {
-  pool.connect((err, client) => {
-    myClient = client;
-
-  })
-}
 
 
 // const listingCount = 101;
