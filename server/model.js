@@ -26,48 +26,30 @@ const postSearchRecord = function (searchQuery, callback) {
     .catch(err => callback(err));
 };
 
-const faker = require('faker');
-const db = require('./index.js');
-const pg = require('pg');
-const format = require('pg-format');
-const PGUSER = 'chris';
-const PGDATABASE = 'listings';
-const age = 732;
-
-const config = {
-  user: PGUSER, // name of the user account
-  database: PGDATABASE, // name of the database
-}
-
-const pool = new pg.Pool(config);
-let myClient;
-
-const imageEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
-
-const insertData = () => {
-  for (let i = 0; i < 5000; i++) {
-    pool.connect((err, client) => {
-      myClient = client;
-      const insertQuery = format(`INSERT INTO searchListing (title, host, city, photoURL) 
-      VALUES ('${faker.random.words()}', '${faker.name.findName()}', '${faker.address.city()}', '${imageEndpoint}/home_${i % 5}.jpg');`)
-      myClient.query(insertQuery, (err, result) => {
-        if (err) console.log(err);
-        console.log(result)
-      })
-    })
-  }
-}
-
-
-const updateData = (id, cb) => {
-  pool.connect((err, client) => {
-    myClient = client;
-
+const updateSearchListing = (id, data, cb) => {
+  models.SearchListing.findByIdAndUpdate(id, data, {new: true}, (err, result) => {
+    if (err) console.log(err);
+    return cb(null, result);
   })
 }
+
+const deleteSearchListing = (id, cb) => {
+  models.SearchListing.findByIdAndRemove(id, (err, results) => {  
+    if (err) console.log(err);
+
+    const response = {
+        message: "Successfully deleted",
+        id: id
+    };
+    return cb(null, response)
+  });
+}
+
 
 module.exports = {
   getSearchResults,
   getSearchRecords,
   postSearchRecord,
+  updateSearchListing,
+  deleteSearchListing,
 };

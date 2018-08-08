@@ -39,6 +39,20 @@ app.post('/api/searchRecords', (req, res) => {
   });
 });
 
+app.put('/api/searchListings/:listingId', (req, res) => {
+  model.updateSearchListing(req.params.listingId, req.body, (err, results) => {
+    if (err) console.log(err);
+    res.send(results);
+  });
+});
+
+app.delete('/api/searchListings/:listingId', (req, res) => {
+  model.deleteSearchListing(req.params.listingId, (err, results) => {
+    if (err) console.log(err);
+    res.send(results);
+  });
+});
+
 app.use('/*', express.static(`${__dirname}/../public`));
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
