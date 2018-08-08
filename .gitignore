@@ -28,3 +28,8 @@ dist/
 
 # Credentials
 .aws.json
+
+# ignore data
+listingsIdAndName*
+listingsData*
+recordsData*

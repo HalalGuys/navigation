@@ -1,82 +1,91 @@
 const fs = require('fs');
 const faker = require('faker');
 
-let file = fs.createWriteStream('./listingsData0.csv');
-
 const imageEndpoint = 'https://s3.amazonaws.com/fec-overview-service-images';
+let file;
 
-// file.write(`title, host, city, photoURL`)
-
-for (let i = 0; i < 1000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg \n`)
-}
-
-file.end();
-
-file = fs.createWriteStream('./listingsData1.csv');
-
-for (let i = 1000000; i < 2000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
+file = fs.createWriteStream('./listingsData0-10.csv');
+for (let i = 0; i < 10000000; i++) {
+    file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg\n`)
 }
 file.end();
 
-file = fs.createWriteStream('./listingsData2.csv');
+// file = fs.createWriteStream('./listingsData1.csv');
 
-for (let i = 2000000; i < 3000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
+// for (let i = 4000000; i < 7000000; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
+// file.end();
 
-file.end();
+// file = fs.createWriteStream('./listingsData2.csv');
 
-file = fs.createWriteStream('./listingsData3.csv');
+// for (let i = 7000000; i < 10000001; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
 
-for (let i = 3000000; i < 4000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
-file.end();
+// file.end();
 
-file = fs.createWriteStream('./listingsData4.csv');
+const months = ['01', '02', '03', '04', '05', '06', '07'];
+const days = ['01','02','03','04','05','15','16','17','18','28','25'];
 
-for (let i = 4000000; i < 5000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
+file = fs.createWriteStream('./data/recordsData0-10.csv');
 
-file.end();
-
-file = fs.createWriteStream('./listingsData5.csv');
-
-for (let i = 5000000; i < 6000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
+for (let i = 0; i < 10000000; i++) {
+    const randomMonth = months[Math.floor(Math.random() * months.length)]
+    const randomDay = days[Math.floor(Math.random() * days.length)]
+    file.write(`${i},house${i},${faker.address.city()},${faker.lorem.sentence()},2018-${randomMonth}-${randomDay}\n`)
 }
 file.end();
 
-file = fs.createWriteStream('./listingsData6.csv');
+// file = fs.createWriteStream('./data/recordsData1.csv');
 
-for (let i = 6000000; i < 7000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
+// for (let i = 4000000; i < 7000000; i++) {
+//     const randomMonth = months[Math.floor(Math.random() * months.length)]
+//     const randomDay = days[Math.floor(Math.random() * days.length)]
+//     file.write(`${i},house${i},${faker.address.city()},${faker.lorem.sentence()},2018-${randomMonth}-${randomDay}\n`)
+// }
 
-file.end();
+// file.end();
 
-file = fs.createWriteStream('./listingsData7.csv');
+// file = fs.createWriteStream('./data/recordsData2.csv');
 
-for (let i = 7000000; i < 8000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
-file.end();
+// for (let i = 7000000; i < 10000001; i++) {
+//     const randomMonth = months[Math.floor(Math.random() * months.length)]
+//     const randomDay = days[Math.floor(Math.random() * days.length)]
+//     console.log(`${i},house${i},${faker.address.city()},${faker.lorem.sentence()},2018-${randomMonth}-${randomDay}`)
+// }
+// file.end();
 
-file = fs.createWriteStream('./listingsData8.csv');
 
-for (let i = 8000000; i < 9000000; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
 
-file.end();
 
-file = fs.createWriteStream('./listingsData9.csv');
+// file = fs.createWriteStream('./listingsData6.csv');
 
-for (let i = 9000000; i < 10000001; i++) {
-    file.write(`${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${5}.jpg`)
-}
+// for (let i = 6000000; i < 7000000; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
 
-file.end();
+// file.end();
+
+// file = fs.createWriteStream('./listingsData7.csv');
+
+// for (let i = 7000000; i < 8000000; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
+// file.end();
+
+// file = fs.createWriteStream('./listingsData8.csv');
+
+// for (let i = 8000000; i < 9000000; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
+
+// file.end();
+
+// file = fs.createWriteStream('./listingsData9.csv');
+
+// for (let i = 9000000; i < 10000001; i++) {
+//     file.write(`${i},house${i},${faker.name.findName()},${faker.address.city()},${imageEndpoint}/home_${i % 5}.jpg\n`)
+// }
+
+// file.end();
