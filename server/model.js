@@ -13,13 +13,15 @@ const pool = new pg.Pool(config);
 let myClient;
 
 const getSearchResults = function (searchTerm, cb) {
-  console.log('getsearch results called', searchTerm)
     pool.connect((err, client) => {
       myClient = client;
-      const query = format('select * from searchListing where listingId < 1000;')
+      const query = format("SELECT * FROM searchListing WHERE listingId = " + searchTerm + ";")
         myClient.query(query, (err, result) => {
-          if (err) console.log(query, err);
-          cb(null, result.rows)
+          if (err) {
+            console.log(query, err)
+          } else {
+            cb(null, result.rows)
+          }
         })
     })
 }
