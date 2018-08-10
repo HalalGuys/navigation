@@ -5,9 +5,9 @@ CREATE DATABASE listings;
 
 CREATE TABLE searchListing (
     listingId SERIAL,
-    title TEXT NOT NULL,
-    host TEXT NOT NULL,
-    city TEXT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    host VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL,
     photoURL VARCHAR(70) NOT NULL
 );
 
